@@ -15,6 +15,10 @@ class TripController extends Controller
         return Trip::all();
     }
 
+
+    //CREATE (INSERT)
+    
+    //READ (SELECT)
     public function getDetailTrips(){
         return 
         Trip::Select('trips.trip_date AS Date', 'ad1.country AS Origin_Country', 

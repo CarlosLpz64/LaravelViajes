@@ -11,7 +11,36 @@ use App\Models\Address; //Necesario agregar
 class AddressController extends Controller
 {
     //
+
+    //CREATE (INSERT)
+    public function createAddresses(Request $request)
+    {
+        // Validate the request...
+
+        $address = new Address;
+
+        $address->country = 'MEXICO';
+        $address->state = 'COLIMA';
+        $address->city = 'MANZANILLO';
+
+        $address->save();
+    }
+    
+    //READ (SELECT)
     public function getAddresses(){
         return Address::all();
+    }
+
+    //UPDATE
+    public function updateAddresses(){
+        Address::where('id', 2)
+        //->where('destination', 'San Diego')
+        ->update(['city' => 'SEATTLE']);
+    }
+
+    //UPDATE
+    public function deleteAddresses(){
+        $address = Address::find(4);
+        $address->delete();
     }
 }
