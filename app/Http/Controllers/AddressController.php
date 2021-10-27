@@ -31,6 +31,13 @@ class AddressController extends Controller
         return Address::all();
     }
 
+    public function getAddress(){
+        return 
+        Address::Select('*')
+        ->where('id', '=', 1)
+        ->get();
+    }
+
     //UPDATE
     public function updateAddresses(){
         Address::where('id', 2)
