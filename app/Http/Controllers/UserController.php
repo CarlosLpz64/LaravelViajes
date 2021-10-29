@@ -12,14 +12,14 @@ class UserController extends Controller
 {
     //
         //CREATE (INSERT)
-        public function createUsers($name,$email,$password,$location)
+        public function createUsers(Request $request)
         {    
             $user = new User;
     
-            $user->name = $name;
-            $user->email = $email;
-            $user->password = $password;
-            $user->location = $location;
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = $request->password;
+            $user->location = $request->location;
     
             $user->save();
         }
@@ -45,9 +45,9 @@ class UserController extends Controller
     }
     
     //UPDATE
-    public function updateUsersName($id,$name){
-        User::where('id', $id)
-        ->update(['name' => $name]);
+    public function updateUsersName(Request $request){
+        User::where('id', $request->id)
+        ->update(['name' => $request->name]);
     }
 
     //DELETE
@@ -55,5 +55,30 @@ class UserController extends Controller
         $user = User::find($id);
         $user->delete();
     }
+    ////////////////////////////////////
 
+    //CREATE (INSERT)
+    public function createEdificio(Request $request)
+    {    
+        $edi = new Building;
+        $edi->nombre = $request->nombre;
+        $edi->save();
+    }
+    
+    //READ (SELECT)
+    public function getEdificios(){
+        return Building::all();
+    }
+
+    //UPDATE
+    public function updateEdificio(Request $request, $id){
+        Building::where('id', $id)
+        ->update(['nombre' => $request->nombre]);
+    }
+
+    //DELETE
+    public function deleteEdificio($id){
+        $edi = Building::find($id);
+        $edi->delete();
+    }
 }

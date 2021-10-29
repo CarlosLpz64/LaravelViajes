@@ -21,14 +21,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //USERS///////////////////////////////////////////////////
 use App\Http\Controllers\UserController; //Necesario
 //CREATE
-Route::get('/createUsers/{name}/{email}/{password}/{location}', [UserController::class, 'createUsers'], function ($name,$email,$password,$location) {}); //http://localhost:8000/api/createUsers
+Route::post('/createUsers', [UserController::class, 'createUsers']); //http://localhost:8000/api/createUsers
 //READ
     //READ ALL
-Route::get('/getUsers', [UserController::class, 'getUsers']); //http://localhost:8000/api/getUsers
+    Route::get('/getUsers', [UserController::class, 'getUsers']); //http://localhost:8000/api/getUsers
     //READ ID
 Route::get('/getUser{id}', [UserController::class, 'getUser'], function ($id) {return 'User '.$id;}); //http://localhost:8000/api/getUser{id}
+
 //UPDATE
-Route::get('/updateUsersName/{id}/{name}', [UserController::class, 'updateUsersName'], function ($id,$name) {}); //http://localhost:8000/api/updateUsersName/{id}/{name}
+//Route::get('/updateUsersName/{id}/{name}', [UserController::class, 'updateUsersName'], function ($id,$name) {}); //http://localhost:8000/api/updateUsersName/{id}/{name}
+Route::post('/updateUsersName', [UserController::class, 'updateUsersName']); //http://localhost:8000/api/updateUsersName
 //DELETE
 Route::get('/deleteUsers{id}', [UserController::class, 'deleteUsers'], function ($id) {return 'User '.$id;}); //http://localhost:8000/api/deleteUsers{id}
 
@@ -65,5 +67,4 @@ Route::get('/deleteAddresses', [AddressController::class, 'deleteAddresses']); /
     //READ INNER JOIN (TAREA PASADA)
     Route::get('/getDetailUsers', [UserController::class, 'getDetailUsers']); //http://localhost:8000/api/getDetailUsers
     Route::get('/getDetailTrips', [TripController::class, 'getDetailTrips']); //http://localhost:8000/api/getDetailTrips
-
     Route::get('/prueba1{id}', [TripController::class, 'prueba1'], function ($id) {return 'User '.$id;}); //http://localhost:8000/api/prueba1{id}
